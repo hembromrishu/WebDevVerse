@@ -1,0 +1,933 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>WebDevVerse | Web Development & Technical Support</title>
+    <link rel="icon" type="image/png" href="C:\Users\WINDOWS\OneDrive\Desktop\WDV/wdv icon.png">
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: Arial, Helvetica, sans-serif;
+            background: #eef3f7;
+            color: #243447;
+            line-height: 1.6;
+        }
+
+        /* Main Website Frame */
+        .site-frame {
+            width: 94%;
+            max-width: 1400px;
+            margin: 25px auto;
+            background: #ffffff;
+            border: 1px solid #d8e1e8;
+            border-radius: 22px;
+            overflow: hidden;
+            box-shadow: 0 15px 50px rgba(31, 56, 75, 0.10);
+        }
+
+        /* Navigation */
+        nav {
+            height: 75px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 35px;
+            background: rgba(255, 255, 255, 0.95);
+            border-bottom: 1px solid #e4ebf0;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .logo {
+            font-size: 27px;
+            font-weight: 800;
+            color: #1f5f8b;
+            letter-spacing: 1px;
+        }
+
+        .logo span {
+            color: #6d8da5;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 28px;
+            list-style: none;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: #415466;
+            font-size: 15px;
+            font-weight: 600;
+            transition: 0.3s;
+        }
+
+        .nav-links a:hover {
+            color: #1f75ad;
+        }
+
+        .nav-button {
+            padding: 11px 20px;
+            border-radius: 10px;
+            background: #1f75ad;
+            color: white !important;
+        }
+
+        .nav-button:hover {
+            background: #175c87;
+        }
+
+        /* Hero */
+        .hero {
+            min-height: 600px;
+            padding: 90px 8%;
+            display: grid;
+            grid-template-columns: 1.2fr 0.8fr;
+            align-items: center;
+            gap: 50px;
+            background: linear-gradient(
+                135deg,
+                #f4f8fb,
+                #e7f0f6
+            );
+        }
+
+        .hero h1 {
+            font-size: clamp(45px, 6vw, 76px);
+            line-height: 1.05;
+            color: #183b56;
+            margin-bottom: 25px;
+        }
+
+        .hero h1 span {
+            color: #287eae;
+        }
+
+        .hero p {
+            max-width: 650px;
+            color: #607486;
+            font-size: 18px;
+            margin-bottom: 35px;
+        }
+
+        .hero-buttons {
+            display: flex;
+            gap: 15px;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 14px 24px;
+            border-radius: 10px;
+            text-decoration: none;
+            font-weight: 700;
+            transition: 0.3s;
+        }
+
+        .primary {
+            background: #1f75ad;
+            color: white;
+        }
+
+        .primary:hover {
+            background: #165d88;
+            transform: translateY(-2px);
+        }
+
+        .secondary {
+            border: 1px solid #b9cbd8;
+            color: #31536a;
+            background: white;
+        }
+
+        .secondary:hover {
+            background: #edf5fa;
+        }
+
+        /* Hero Card */
+        .hero-card {
+            background: #ffffff;
+            border: 1px solid #dce7ee;
+            border-radius: 20px;
+            padding: 30px;
+            box-shadow: 0 20px 45px rgba(37, 75, 99, 0.10);
+        }
+
+        .terminal {
+            background: #17232d;
+            color: #d9f2ff;
+            border-radius: 14px;
+            padding: 22px;
+            font-family: Consolas, monospace;
+            font-size: 14px;
+            overflow: hidden;
+        }
+
+        .terminal-title {
+            color: #9db4c3;
+            margin-bottom: 18px;
+        }
+
+        .code-green {
+            color: #7ed6a5;
+        }
+
+        .code-blue {
+            color: #72b7ed;
+        }
+
+        .code-yellow {
+            color: #e8d58c;
+        }
+
+        /* General Sections */
+        section {
+            padding: 85px 8%;
+        }
+
+        .section-heading {
+            text-align: center;
+            margin-bottom: 50px;
+        }
+
+        .section-heading h2 {
+            font-size: 38px;
+            color: #1c3d55;
+            margin-bottom: 12px;
+        }
+
+        .section-heading p {
+            color: #708393;
+            max-width: 650px;
+            margin: auto;
+        }
+
+        /* Services */
+        .services {
+            background: #ffffff;
+        }
+
+        .service-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 22px;
+        }
+
+        .service-card {
+            padding: 30px;
+            border: 1px solid #e0e8ed;
+            border-radius: 17px;
+            background: #fbfdfe;
+            transition: 0.3s;
+        }
+
+        .service-card:hover {
+            transform: translateY(-7px);
+            box-shadow: 0 15px 35px rgba(42, 78, 101, 0.10);
+            border-color: #b9d2e2;
+        }
+
+        .service-icon {
+            width: 52px;
+            height: 52px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 13px;
+            background: #e4f1f8;
+            font-size: 25px;
+            margin-bottom: 20px;
+        }
+
+        .service-card h3 {
+            color: #244b65;
+            margin-bottom: 10px;
+        }
+
+        .service-card p {
+            color: #718391;
+            font-size: 15px;
+        }
+
+        /* Tools */
+        .tools-section {
+            background: #f1f6f9;
+        }
+
+        .tools-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 18px;
+        }
+
+        .tool {
+            background: white;
+            padding: 25px;
+            border-radius: 15px;
+            border: 1px solid #dce7ed;
+        }
+
+        .tool strong {
+            display: block;
+            color: #244d67;
+            margin-bottom: 7px;
+        }
+
+        .tool small {
+            color: #80919d;
+        }
+
+        /* Process */
+        .process-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 20px;
+        }
+
+        .process {
+            text-align: center;
+            padding: 20px;
+        }
+
+        .number {
+            width: 55px;
+            height: 55px;
+            margin: auto auto 18px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: #dceef7;
+            color: #1d6b98;
+            font-weight: bold;
+            font-size: 18px;
+        }
+
+        .process h3 {
+            margin-bottom: 8px;
+            color: #284c63;
+        }
+
+        .process p {
+            color: #758693;
+            font-size: 14px;
+        }
+
+        /* Support Banner */
+        .support {
+            background: #e5f0f6;
+        }
+
+        .support-box {
+            background: #ffffff;
+            border: 1px solid #d5e2ea;
+            border-radius: 20px;
+            padding: 50px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 30px;
+        }
+
+        .support-box h2 {
+            color: #1e425a;
+            margin-bottom: 10px;
+        }
+
+        .support-box p {
+            color: #718391;
+        }
+
+        /* Contact */
+        .contact {
+            background: #ffffff;
+        }
+
+        .contact-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+        }
+
+        .contact-info h2 {
+            color: #1d425a;
+            font-size: 35px;
+            margin-bottom: 18px;
+        }
+
+        .contact-info p {
+            color: #70818e;
+            margin-bottom: 25px;
+        }
+
+        .contact-item {
+            margin: 15px 0;
+            color: #4f6575;
+        }
+
+        form {
+            background: #f7fafc;
+            border: 1px solid #dfe8ed;
+            padding: 30px;
+            border-radius: 17px;
+        }
+
+        input,
+        textarea {
+            width: 100%;
+            border: 1px solid #d4e0e7;
+            border-radius: 9px;
+            padding: 14px;
+            margin-bottom: 15px;
+            font-family: inherit;
+            outline: none;
+            background: white;
+        }
+
+        input:focus,
+        textarea:focus {
+            border-color: #579bc2;
+        }
+
+        textarea {
+            height: 130px;
+            resize: vertical;
+        }
+
+        button {
+            border: none;
+            cursor: pointer;
+            width: 100%;
+        }
+
+        /* Footer */
+        footer {
+            padding: 30px 8%;
+            background: #183746;
+            color: #b9cbd5;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 20px;
+        }
+
+        footer strong {
+            color: white;
+        }
+
+        .footer-links {
+            display: flex;
+            gap: 20px;
+        }
+
+        .footer-links a {
+            color: #b9cbd5;
+            text-decoration: none;
+            font-size: 14px;
+        }
+
+        /* Responsive */
+        @media (max-width: 950px) {
+            .hero {
+                grid-template-columns: 1fr;
+            }
+
+            .service-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .tools-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .process-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .contact-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 700px) {
+            .site-frame {
+                width: 100%;
+                margin: 0;
+                border-radius: 0;
+            }
+
+            nav {
+                padding: 15px 20px;
+                height: auto;
+                flex-wrap: wrap;
+                gap: 15px;
+            }
+
+            .nav-links {
+                width: 100%;
+                justify-content: center;
+                gap: 14px;
+                flex-wrap: wrap;
+            }
+
+            .nav-button {
+                display: none;
+            }
+
+            section {
+                padding: 65px 6%;
+            }
+
+            .hero {
+                padding: 70px 6%;
+            }
+
+            .service-grid,
+            .tools-grid,
+            .process-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .support-box {
+                padding: 30px;
+                flex-direction: column;
+                align-items: flex-start;
+            }
+
+            footer {
+                flex-direction: column;
+                text-align: center;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+<div class="site-frame">
+
+    <!-- Navigation -->
+    <nav>
+        <div class="logo">WebDev<span>Verse</span></div>
+        <ul class="nav-links">
+            <li><a href="#home">Home</a></li>
+            <li><a href="#services">Services</a></li>
+            <li><a href="#tools">Tools</a></li>
+            <li><a href="#process">Process</a></li>
+            <li><a href="#contact">Contact</a></li>
+            <li><a href="#contact" class="nav-button">Start a Project</a></li>
+        </ul>
+    </nav>
+
+
+    <!-- Hero -->
+    <section class="hero" id="home">
+
+        <div>
+            <h1>
+                Build. Maintain.<br>
+                <span>Go Digital.</span>
+            </h1>
+
+            <p>
+                WebDevVerse is a technical team helping businesses, creators
+                and organizations design, develop, launch and maintain
+                modern websites and applications.
+            </p>
+
+            <div class="hero-buttons">
+                <a href="#contact" class="btn primary">
+                    Start Your Project
+                </a>
+
+                <a href="#services" class="btn secondary">
+                    Explore Services
+                </a>
+            </div>
+        </div>
+
+
+        <div class="hero-card">
+
+            <div class="terminal">
+
+                <div class="terminal-title">
+                    WebDevVerse / development
+                </div>
+
+                <div>
+                    <span class="code-blue">const</span>
+                    project =
+                    <span class="code-yellow">"your-website"</span>;
+                </div>
+
+                <br>
+
+                <div>
+                    <span class="code-blue">team</span>.<span
+                    class="code-green">design</span>();
+                </div>
+
+                <div>
+                    <span class="code-blue">team</span>.<span
+                    class="code-green">develop</span>();
+                </div>
+
+                <div>
+                    <span class="code-blue">team</span>.<span
+                    class="code-green">test</span>();
+                </div>
+
+                <div>
+                    <span class="code-blue">team</span>.<span
+                    class="code-green">deploy</span>();
+                </div>
+
+                <br>
+
+                <div class="code-green">
+                    ✓ Project ready for launch
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- Services -->
+    <section class="services" id="services">
+
+        <div class="section-heading">
+            <h2>What We Do</h2>
+
+            <p>
+                From the first idea to long-term maintenance,
+                our technical team can help you build and operate
+                your digital platform.
+            </p>
+        </div>
+
+
+        <div class="service-grid">
+
+            <div class="service-card">
+                <div class="service-icon">⌘</div>
+                <h3>Web Development</h3>
+                <p>
+                    Modern, responsive and scalable websites
+                    designed around your business requirements.
+                </p>
+            </div>
+
+            <div class="service-card">
+                <div class="service-icon">▣</div>
+                <h3>Application Development</h3>
+                <p>
+                    Custom web applications and digital systems
+                    built for real-world workflows.
+                </p>
+            </div>
+
+            <div class="service-card">
+                <div class="service-icon">⚙</div>
+                <h3>Website Maintenance</h3>
+                <p>
+                    Updates, bug fixes, performance improvements,
+                    security checks and technical assistance.
+                </p>
+            </div>
+
+            <div class="service-card">
+                <div class="service-icon">◈</div>
+                <h3>UI / UX Design</h3>
+                <p>
+                    Clean interfaces and user experiences
+                    that make digital products easier to use.
+                </p>
+            </div>
+
+            <div class="service-card">
+                <div class="service-icon">↗</div>
+                <h3>Deployment & Hosting</h3>
+                <p>
+                    Help with domains, hosting, deployment,
+                    SSL and production environments.
+                </p>
+            </div>
+
+            <div class="service-card">
+                <div class="service-icon">⌁</div>
+                <h3>Technical Support</h3>
+                <p>
+                    Ongoing technical support for websites,
+                    applications and digital infrastructure.
+                </p>
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- Tools -->
+    <section class="tools-section" id="tools">
+
+        <div class="section-heading">
+
+            <h2>Our Digital Toolkit</h2>
+
+            <p>
+                A flexible collection of technologies and tools
+                used to create, manage and maintain digital products.
+            </p>
+
+        </div>
+
+
+        <div class="tools-grid">
+
+            <div class="tool">
+                <strong>HTML / CSS</strong>
+                <small>Modern responsive interfaces</small>
+            </div>
+
+            <div class="tool">
+                <strong>JavaScript</strong>
+                <small>Interactive web experiences</small>
+            </div>
+
+            <div class="tool">
+                <strong>React</strong>
+                <small>Modern application interfaces</small>
+            </div>
+
+            <div class="tool">
+                <strong>Node.js</strong>
+                <small>Backend development</small>
+            </div>
+
+            <div class="tool">
+                <strong>Database Systems</strong>
+                <small>Data storage and management</small>
+            </div>
+
+            <div class="tool">
+                <strong>Git</strong>
+                <small>Version control and collaboration</small>
+            </div>
+
+            <div class="tool">
+                <strong>Cloud & Hosting</strong>
+                <small>Deployment and infrastructure</small>
+            </div>
+
+            <div class="tool">
+                <strong>Security Tools</strong>
+                <small>Protection and monitoring</small>
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- Process -->
+    <section id="process">
+
+        <div class="section-heading">
+
+            <h2>How WebDevVerse Works</h2>
+
+            <p>
+                A simple technical workflow from your initial idea
+                to a reliable digital product.
+            </p>
+
+        </div>
+
+
+        <div class="process-grid">
+
+            <div class="process">
+                <div class="number">01</div>
+                <h3>Discover</h3>
+                <p>
+                    Understand your requirements, goals and users.
+                </p>
+            </div>
+
+            <div class="process">
+                <div class="number">02</div>
+                <h3>Build</h3>
+                <p>
+                    Design and develop your website or application.
+                </p>
+            </div>
+
+            <div class="process">
+                <div class="number">03</div>
+                <h3>Test</h3>
+                <p>
+                    Check performance, usability and reliability.
+                </p>
+            </div>
+
+            <div class="process">
+                <div class="number">04</div>
+                <h3>Support</h3>
+                <p>
+                    Maintain and improve your digital product.
+                </p>
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- Support -->
+    <section class="support">
+
+        <div class="support-box">
+
+            <div>
+                <h2>Already have a website?</h2>
+
+                <p>
+                    WebDevVerse can help improve, repair, redesign
+                    or maintain your existing website.
+                </p>
+            </div>
+
+            <a href="#contact" class="btn primary">
+                Get Technical Help
+            </a>
+
+        </div>
+
+    </section>
+
+
+    <!-- Contact -->
+    <section class="contact" id="contact">
+
+        <div class="contact-grid">
+
+            <div class="contact-info">
+
+                <h2>Let's Build Something.</h2>
+
+                <p>
+                    Tell us about your website, application or
+                    technical problem. Our team can help you plan
+                    the next step.
+                </p>
+
+                <div class="contact-item">
+                    <strong>Email:</strong>
+                    teamwebdevverse@gmail.com
+                    <strong>Phone:</strong>
+                    7050212392
+                </div>
+
+                <div class="contact-item">
+                    <strong>Services:</strong>
+                    Web Development · Apps · Support
+                </div>
+
+                <div class="contact-item">
+                    <strong>Availability:</strong>
+                    Project-based & ongoing support
+                </div>
+
+            </div>
+
+
+            <form onsubmit="sendMessage(event)">
+
+                <input
+                    type="text"
+                    placeholder="Your Name"
+                    required
+                >
+
+                <input
+                    type="email"
+                    placeholder="Email Address"
+                    required
+                >
+
+                <input
+                    type="text"
+                    placeholder="Project Type"
+                >
+
+                <textarea
+                    placeholder="Tell us about your project..."
+                    required
+                ></textarea>
+
+                <button
+                    type="submit"
+                    class="btn primary"
+                >
+                    Send Project Request
+                </button>
+
+            </form>
+
+        </div>
+
+    </section>
+
+
+    <!-- Footer -->
+    <footer>
+
+        <div>
+            © 2026 <strong>WebDevVerse</strong>. All rights reserved.
+        </div>
+
+        <div class="footer-links">
+            <a href="#home">Home</a>
+            <a href="#services">Services</a>
+            <a href="#tools">Tools</a>
+            <a href="#contact">Contact</a>
+        </div>
+
+    </footer>
+
+</div>
+
+
+<script>
+
+    function sendMessage(event) {
+
+        event.preventDefault();
+
+        alert(
+            "Thank you for contacting WebDevVerse! " +
+            "Your project request has been received."
+        );
+
+    }
+
+</script>
+
+</body>
+</html>
